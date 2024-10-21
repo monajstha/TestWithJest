@@ -4,8 +4,9 @@ import {
   calculator,
   caesarCipher,
   analyzeArray,
-} from "./practice";
+} from "../practice";
 
+// Capitalize
 test("Capitalizes pencil to equal Pencil", () => {
   expect(capitalize("pencil")).toBe("Pencil");
 });
@@ -14,6 +15,7 @@ test("Capitalizes '' to equal ''", () => {
   expect(capitalize("")).toBe("");
 });
 
+// Reverse a string
 test("Reverses Hello to equal olleH", () => {
   expect(reverseString("Hello")).toBe("olleH");
 });
@@ -22,6 +24,7 @@ test("Reverses '' to equal ''", () => {
   expect(reverseString("")).toBe("");
 });
 
+// Calculator
 test("Adds 20 + 45 to equal 65 ", () => {
   expect(calculator.add(20, 45)).toBe(65);
 });
