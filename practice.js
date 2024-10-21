@@ -9,34 +9,27 @@ const reverseString = (word) => {
 const calculator = {
   add: (num1, num2) => num1 + num2,
   subtract: (num1, num2) => num1 - num2,
-  divide: (num1, num2) => num1 / num2,
+  divide: (num1, num2) => {
+    if (num1 <= 0 || num2 <= 0) return "Error";
+    return num1 / num2;
+  },
   multiply: (num1, num2) => num1 * num2,
 };
 
-const isCharAlphabet = (character, shift = 3) => {
-  const charCode = character.charCodeAt(0);
-  if (charCode >= 65) {
-    //   For albhabets
-    let index = charCode + shift;
-    if (index > 122) {
-      index = 96 + (index - 122);
-    }
-    return index;
-  }
-  //   For non albhabets return false
-  return false;
-};
-
-const caesarCipher = (word, shift) => {
+const caesarCipher = (string, shiftKey) => {
   let cipheredText = "";
-  for (let i = 0; i < word.length; i++) {
-    // For non alphabetical characters
-    if (!isCharAlphabet(word[i])) {
-      cipheredText += word[i];
-      continue;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].match(/[a-z]/)) {
+      cipheredText += String.fromCharCode(
+        ((string[i].charCodeAt(0) - 97 + shiftKey) % 26) + 97
+      );
+    } else if (string[i].match(/[A-Z]/)) {
+      cipheredText += String.fromCharCode(
+        ((string[i].charCodeAt(0) - 65 + shiftKey) % 26) + 65
+      );
+    } else {
+      cipheredText += string[i];
     }
-
-    cipheredText += String.fromCharCode(isCharAlphabet(word[i]));
   }
   return cipheredText;
 };
@@ -45,8 +38,7 @@ const analyzeArray = (arr) => {
   const length = arr.length;
   const average =
     arr.reduce((acc, curr) => {
-      const sum = acc + curr;
-      return sum;
+      return acc + curr;
     }, 0) / length;
 
   const max = arr.sort((a, b) => b - a)[0];

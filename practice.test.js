@@ -42,6 +42,10 @@ test("Divides 60 / 3 to equal 20 ", () => {
   expect(calculator.divide(60, 3)).toBe(20);
 });
 
+test("Divides 0 / 60 to equal 20 ", () => {
+  expect(calculator.divide(60, 0)).toBe("Error");
+});
+
 // caesarCipher
 test("Ciphers 'xyz' with shift of 3 to equal 'abc'", () => {
   expect(caesarCipher("xyz", 3)).toBe("abc");
